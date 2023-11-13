@@ -5,4 +5,4 @@ $dbname = "";
 
 $conn = mysqli_connect($dbhost, $dbuser. $dbpass, $dbname);
 
-echo "Cowl";
+echo "Cowls";
