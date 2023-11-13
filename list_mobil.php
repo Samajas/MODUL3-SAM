@@ -8,16 +8,26 @@
 <body>
     <?php include("navbar.php") ?>
     <center>
-        <div class="container">
+        <div class="container mt-5" style="width:50%">
             <h1>List Mobil</h1>
-
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nama Mobil</th>
+                            <th scope="col">Brand Mobil</th>
+                            <th scope="col">warna Mobil</th>
+                            <th scope="col">Tipe Mobil</th>
+                            <th scope="col">Harga Mobil</th>
+                        </tr>
+                    </thead>
+            <tbody>
             <?php
             include("connect.php");
 
             // Buatlah query untuk mengambil data dari database (gunakan query SELECT)
 
-            
-            
+            $query = mysqli_query($conn,"SELECT * FROM pengguna");            
 
             // Buatlah perkondisian dimana: 
             // 1. a. Apabila ada data dalam database, maka outputnya adalah semua data dalam database akan ditampilkan 
@@ -27,7 +37,19 @@
             // 2. Apabila tidak ada data dalam database, maka outputnya adalah pesan 'tidak ada data dalam tabel'
 
             //<!--  **********************  1  **************************     -->
-
+            if ($query) {
+                while ($row = mysqli_fetch_assoc($query)) {
+            ?>
+            <tr>
+                <th scope="row"><?= $row['id'] ?></th>
+                <td><?= $row['nama_mobil'] ?></td>
+                <td><?= $row['brand_mobil'] ?></td>
+                <td><?= $row['warna_mobil'] ?></td>
+                <td><?= $row['tipe_mobil'] ?></td> 
+                <td><?= $row['harga_mobil'] ?></td>
+                <td><a href="form_detail_mobil.php/id=".$row['id']></a>
+            </tr>
+            <?php
             
             
 
@@ -47,7 +69,10 @@
             
             
             //<!--  **********************  2  **************************     -->
+                    }
+                }
             ?>
+            </tbody>
         </div>
     </center>
 </body>
